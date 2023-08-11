@@ -8,7 +8,6 @@ import { ProductDetailsModule } from './product-details/product-details.module';
 import { NewProductModule } from './new-product/new-product.module';
 import { CheckStageModule } from './check-stage/check-stage.module';
 import { ResultsBarModule } from './results-bar/results-bar.module';
-import { MySceneComponent } from './my-scene/my-scene.component';
 import { MySceneModule } from './my-scene/my-scene.module';
 
 @NgModule({
