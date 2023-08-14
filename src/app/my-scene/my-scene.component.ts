@@ -4,6 +4,8 @@ import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { SceneService } from 'src/scene.service';
+
+
 @Component({
   selector: 'app-my-scene',
   templateUrl: './my-scene.component.html',
@@ -11,10 +13,11 @@ import { SceneService } from 'src/scene.service';
   
 })
 export class MySceneComponent implements OnInit,AfterViewInit {
- 
-
-  constructor(private sceneService: SceneService) { }
   @ViewChild('canvas') private canvasRef!: ElementRef;
+  
+    scene=this.sceneService.scene;
+  constructor(private sceneService: SceneService) { }
+
 
   //* Stage Properties
 
@@ -32,10 +35,6 @@ export class MySceneComponent implements OnInit,AfterViewInit {
 
   
   //? Helper Properties (Private Properties);
-
-  private get canvas(): HTMLCanvasElement {
-    return this.canvasRef.nativeElement;
-  }
 
   private loaderGLTF = new GLTFLoader();
   /**
@@ -57,7 +56,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
    */
    private createControls = () => {
     const renderer = new CSS2DRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(this.sceneService.getCanvasWidth(this.canvasRef.nativeElement), this.sceneService.getCanvasHeight(this.canvasRef.nativeElement));
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0px';
     document.body.appendChild(renderer.domElement);
@@ -81,8 +80,8 @@ export class MySceneComponent implements OnInit,AfterViewInit {
 
   private createScene() {
     //* Scene
- const scene=this.sceneService.scene;
-    scene.background = new THREE.Color(0xB1E1FF)
+ this. scene=this.sceneService.scene;
+    this.scene.background = new THREE.Color(0xB1E1FF)
     this.loaderGLTF.load('assets/projectNEW.glb', (glb: GLTF) => {
       this.model = glb.scene
       this.model.position.set(-6,3,-2)
@@ -95,18 +94,18 @@ export class MySceneComponent implements OnInit,AfterViewInit {
           child.receiveShadow=true
         }
       })
-      scene.add(this.model);
+      this.scene.add(this.model);
     });
 
     //*Camera
-    let aspectRatio = this.getAspectRatio();
-    this.camera = new THREE.PerspectiveCamera(75, aspectRatio,1,1000)
+
+    this.camera = this.sceneService.createCamera(this.canvasRef.nativeElement);
     this.camera.position.set(-9,4,-3)
 
     // Lighting
 
     this. hemisphereLight = new THREE.HemisphereLight(0xB1E1FF, 0xB97A20, 2);
-      scene.add(this.hemisphereLight);
+     this. scene.add(this.hemisphereLight);
 
     this.directionalLight = new THREE.DirectionalLight(0xFFFFFF, 3);
     this.directionalLight.position.set(-11, 6, 5);
@@ -114,11 +113,11 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     this.directionalLight.shadow.mapSize.width = 1024
     this.directionalLight.shadow.mapSize.height = 1024
     this.directionalLight.castShadow = true;
-    scene.add(this.directionalLight);
-    scene.add(this.directionalLight.target)
+    this.scene.add(this.directionalLight);
+    this.scene.add(this.directionalLight.target)
 
     this.ambientLight=new THREE.AmbientLight(0xffffff,2)
-    scene.add(this.ambientLight)
+    this.scene.add(this.ambientLight)
     this.loader=new THREE.TextureLoader()
     const texture=this.loader.load('assets/ground.jpg')
     texture.wrapS = THREE.RepeatWrapping;
@@ -134,13 +133,10 @@ export class MySceneComponent implements OnInit,AfterViewInit {
   mesh.receiveShadow = true;
   mesh.rotation.x = Math.PI * -.5;
   mesh.position.set(-7,2.5,-2)
-  scene.add(mesh);
+  this.scene.add(mesh);
 
   }
 
-  private getAspectRatio() {
-    return this.canvas.width / this.canvas.height;
-  }
 
   /**
  * Start the rendering loop
@@ -151,15 +147,15 @@ export class MySceneComponent implements OnInit,AfterViewInit {
   private startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-    this.renderer.shadowMap.enabled=true
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setSize(this.canvas.width, this.canvas.height);
+   
+    
+
+
+   this.renderer=this.sceneService.createRenderer(this.canvasRef.nativeElement);
     let component: MySceneComponent = this;
 
     (function render() {
-      component.renderer.render(component.sceneService.scene, component.camera);
+      component.renderer.render(component.scene, component.camera);
       component.animateModel();
       requestAnimationFrame(render);
     }());

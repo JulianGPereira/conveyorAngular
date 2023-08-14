@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MySceneComponent } from './my-scene.component';
 import { SceneService } from 'src/scene.service';
-
+import { BoxMeshService } from '../boxMesh.service';
 
 
 @NgModule({
@@ -15,6 +15,9 @@ import { SceneService } from 'src/scene.service';
   exports:[
     MySceneComponent
   ],
-  providers:[SceneService]
+  providers:[
+    SceneService,
+    BoxMeshService
+  ]
 })
 export class MySceneModule { }
