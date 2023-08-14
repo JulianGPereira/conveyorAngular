@@ -25,9 +25,9 @@ export interface stageResults
 
 export interface boxMeshDetails
 {
-        boxNum:number
-        position:any
-        name:string
-        castShadow:boolean
-        recieveShadow:boolean
+    boxNum:number
+    position:any
+    name:string
+    castShadow:boolean
+    recieveShadow:boolean
 }

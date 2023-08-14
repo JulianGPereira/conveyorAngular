@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewProductComponent } from './new-product.component';
+import { SceneService } from 'src/scene.service';
 
 
 
@@ -13,6 +14,7 @@ import { NewProductComponent } from './new-product.component';
   ],
   exports:[
     NewProductComponent
-  ]
+  ],
+  providers:[SceneService]
 })
 export class NewProductModule { }

@@ -3,15 +3,17 @@ import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-
+import { SceneService } from 'src/scene.service';
 @Component({
   selector: 'app-my-scene',
   templateUrl: './my-scene.component.html',
-  styleUrls: ['./my-scene.component.css']
+  styleUrls: ['./my-scene.component.css'],
+  
 })
 export class MySceneComponent implements OnInit,AfterViewInit {
-
  
+
+  constructor(private sceneService: SceneService) { }
   @ViewChild('canvas') private canvasRef!: ElementRef;
 
   //* Stage Properties
@@ -27,7 +29,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
   private loader!:THREE.TextureLoader;
   private directionalLight!: THREE.DirectionalLight;
   private renderer!: THREE.WebGLRenderer;
-  private scene!: THREE.Scene;
+
   
   //? Helper Properties (Private Properties);
 
@@ -79,8 +81,8 @@ export class MySceneComponent implements OnInit,AfterViewInit {
 
   private createScene() {
     //* Scene
-    this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xB1E1FF)
+ const scene=this.sceneService.scene;
+    scene.background = new THREE.Color(0xB1E1FF)
     this.loaderGLTF.load('assets/projectNEW.glb', (glb: GLTF) => {
       this.model = glb.scene
       this.model.position.set(-6,3,-2)
@@ -93,7 +95,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
           child.receiveShadow=true
         }
       })
-      this.scene.add(this.model);
+      scene.add(this.model);
     });
 
     //*Camera
@@ -104,7 +106,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     // Lighting
 
     this. hemisphereLight = new THREE.HemisphereLight(0xB1E1FF, 0xB97A20, 2);
-      this.scene.add(this.hemisphereLight);
+      scene.add(this.hemisphereLight);
 
     this.directionalLight = new THREE.DirectionalLight(0xFFFFFF, 3);
     this.directionalLight.position.set(-11, 6, 5);
@@ -112,11 +114,11 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     this.directionalLight.shadow.mapSize.width = 1024
     this.directionalLight.shadow.mapSize.height = 1024
     this.directionalLight.castShadow = true;
-    this.scene.add(this.directionalLight);
-    this.scene.add(this.directionalLight.target)
+    scene.add(this.directionalLight);
+    scene.add(this.directionalLight.target)
 
     this.ambientLight=new THREE.AmbientLight(0xffffff,2)
-    this.scene.add(this.ambientLight)
+    scene.add(this.ambientLight)
     this.loader=new THREE.TextureLoader()
     const texture=this.loader.load('assets/ground.jpg')
     texture.wrapS = THREE.RepeatWrapping;
@@ -132,7 +134,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
   mesh.receiveShadow = true;
   mesh.rotation.x = Math.PI * -.5;
   mesh.position.set(-7,2.5,-2)
-  this.scene.add(mesh);
+  scene.add(mesh);
 
   }
 
@@ -157,16 +159,14 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     let component: MySceneComponent = this;
 
     (function render() {
-      component.renderer.render(component.scene, component.camera);
+      component.renderer.render(component.sceneService.scene, component.camera);
       component.animateModel();
       requestAnimationFrame(render);
     }());
   }
 
-  constructor() { }
-
+  
   ngOnInit(): void {
-
   }
 
   ngAfterViewInit() {
