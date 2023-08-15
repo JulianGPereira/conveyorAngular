@@ -7,7 +7,7 @@ import { BoxMeshService } from '../boxMesh.service';
   styleUrls: ['./new-product.component.css']
 })
 export class NewProductComponent implements OnInit {
- scene=this.sceneService.scene
+ scene=this.sceneService.getScene()
   constructor(private sceneService: SceneService,private boxmeshService:BoxMeshService) { }
   
   newProduct()

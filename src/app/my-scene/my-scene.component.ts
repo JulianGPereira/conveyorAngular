@@ -15,7 +15,7 @@ import { SceneService } from 'src/scene.service';
 export class MySceneComponent implements OnInit,AfterViewInit {
   @ViewChild('canvas') private canvasRef!: ElementRef;
   
-    scene=this.sceneService.scene;
+    scene=this.sceneService.getScene();
   constructor(private sceneService: SceneService) { }
 
 
@@ -80,7 +80,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
 
   private createScene() {
     //* Scene
- this. scene=this.sceneService.scene;
+ this. scene=this.sceneService.getScene();
     this.scene.background = new THREE.Color(0xB1E1FF)
     this.loaderGLTF.load('assets/projectNEW.glb', (glb: GLTF) => {
       this.model = glb.scene
@@ -151,7 +151,8 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     
 
 
-   this.renderer=this.sceneService.createRenderer(this.canvasRef.nativeElement);
+   this.renderer=this.sceneService.getRenderer();
+    this.renderer.setSize(this.canvasRef.clientWidth, canvas.clientHeight);
     let component: MySceneComponent = this;
 
     (function render() {
@@ -169,6 +170,7 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     this.createScene();
     this.startRenderingLoop();
     this.createControls();
+    this.sceneService.setCanvasRef(this.canvasRef)
 
   }
 

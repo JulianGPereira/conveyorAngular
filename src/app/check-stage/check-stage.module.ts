@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CheckStageComponent } from './check-stage.component';
 import { SceneService } from 'src/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
+import { MySceneModule } from '../my-scene/my-scene.module';
 
 
 
@@ -11,7 +12,8 @@ import { BoxMeshService } from '../boxMesh.service';
     CheckStageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MySceneModule
   ],
   exports:[
     CheckStageComponent
