@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef,AfterViewInit } from '@angular/core';
 import * as THREE from 'three';
 import { SceneService } from 'src/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
-import { MySceneComponent } from '../my-scene/my-scene.component';
 
 @Component({
   selector: 'app-check-stage',
@@ -11,8 +10,6 @@ import { MySceneComponent } from '../my-scene/my-scene.component';
 })
 export class CheckStageComponent implements OnInit,AfterViewInit  {
  
-  // @ViewChild('canvas')  canvasRef!: ElementRef;
-  private canvas!: HTMLCanvasElement
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -21,38 +18,35 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
   constructor(private sceneService: SceneService, private boxmeshService: BoxMeshService) {
    }
 
-  moveStraight() {
+  moveStraight(xPos:number) {
     const canvasRef: ElementRef | undefined = this.sceneService.getCanvasRef();
     if (canvasRef) {
-      const canvas: HTMLCanvasElement = canvasRef.nativeElement;
-    console.log(this.canvas)
-    // Check if canvasRef is available
       this.boxMesh = this.boxmeshService.boxMesh;
       this.scene = this.sceneService.getScene();
 
-      // Create renderer and camera
+      // get Created renderer and camera
       this.renderer = this.sceneService.getRenderer()
-      this.camera = this.sceneService.createCamera(canvas);
+      this.camera = this.sceneService.getCamera();
 
-      this.animate();
+      this.animateStraight(xPos);
    
   }
 }
 
-  private animate() {
-    if (this.boxMesh.position.x < -5) {
+  private animateStraight(xPos:number) {
+    if (this.boxMesh.position.x < xPos) {
       this.boxMesh.position.x += 0.03;
       this.renderer.render(this.scene, this.camera);
     }
 
-    requestAnimationFrame(() => this.animate());
+    requestAnimationFrame(() => this.animateStraight(xPos));
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    this.moveStraight();
+    
   }
 
 }

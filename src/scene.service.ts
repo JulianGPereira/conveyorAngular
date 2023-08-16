@@ -21,18 +21,23 @@ export class SceneService {
   }
 
   createRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    this. renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-    return renderer;
+    return this.renderer;
   }
 
   createCamera(canvas: HTMLCanvasElement): THREE.PerspectiveCamera {
     const aspectRatio = canvas.clientWidth / canvas.clientHeight;
-    return new THREE.PerspectiveCamera(75, aspectRatio, 1, 1000);
+    this.camera= new THREE.PerspectiveCamera(75, aspectRatio, 1, 1000);
+    return this.camera
+  }
+
+  getCamera():THREE.PerspectiveCamera{
+    return this.camera
   }
 
   getCanvasWidth(canvas: HTMLCanvasElement): number {
@@ -45,9 +50,10 @@ export class SceneService {
 
   constructor()
   {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    
   }
   getRenderer(): THREE.WebGLRenderer {
     return this.renderer;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InputFetchService } from '../input-fetch.service';
+import { ProductVariableList } from '../inputGroup';
 
 @Component({
   selector: 'app-product-details',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor() { }
+  productDataList:ProductVariableList[]=[]
+
+  constructor(inputFetchService:InputFetchService) {
+    inputFetchService.getInputDetails().then((productDataList:ProductVariableList[])=>{
+      this.productDataList=productDataList
+    })
+   }
 
   ngOnInit(): void {
   }

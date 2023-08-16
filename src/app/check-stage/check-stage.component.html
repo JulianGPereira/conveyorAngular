@@ -2,18 +2,18 @@
 <!-- Stage fields -->
 <div class="input-group mb-3">
   <!-- Buttons and input fields -->
-  <button class="btn btn-outline-primary" type="button" id="stage1" (click)="moveStraight()" >S1 Check Temperature</button>
+  <button class="btn btn-outline-primary" type="button" id="stage1" (click)="moveStraight(-5)" >S1 Check Temperature</button>
 <input type="text" class="form-control" placeholder="Temperature" id="stage1value" value="21">
 </div>
 <div class="input-group mb-3">
-<button class="btn btn-outline-primary" type="button" id="stage2" >S2 Check Weight</button>
+<button class="btn btn-outline-primary" type="button" id="stage2" (click)="moveStraight(-3.7)" >S2 Check Weight</button>
 <input type="text" class="form-control" placeholder="Weight" id="stage2value" value="33">
 </div>
 <div class="input-group mb-3">
-<button class="btn btn-outline-primary" type="button" id="stage3"  >S3 Check Quantity</button>
+<button class="btn btn-outline-primary" type="button" id="stage3" (click)="moveStraight(-1.5)"  >S3 Check Quantity</button>
 <input type="text" class="form-control" placeholder="Quality" id="stage3value" value="45">
 </div>
 <div class="input-group mb-3">
-<button class="btn btn-outline-primary" type="button" id="stage4"  >S4 Check Dimensions</button>
+<button class="btn btn-outline-primary" type="button" id="stage4" (click)="moveStraight(-.5)"  >S4 Check Dimensions</button>
 <input type="text" class="form-control" placeholder="Dimentions" id="stage4value" value="21">
 </div>

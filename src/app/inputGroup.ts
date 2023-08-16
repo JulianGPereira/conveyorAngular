@@ -1,13 +1,13 @@
-export interface productVariableList
+export interface ProductVariableList
 {
-    productId:string
+    id:string
     temperature:number
     weight:number
     quantity:number
     dimensions:number
 }
 
-export interface stageValue
+export interface StageValue
 {
     stage1Value:number
     stage2Value:number
@@ -15,7 +15,7 @@ export interface stageValue
     stage4Value:number
 }
 
-export interface stageResults
+export interface StageResults
 {
     stage1Result:string
     stage2Result:string
@@ -23,7 +23,7 @@ export interface stageResults
     stage4Result:string
 }
 
-export interface boxMeshDetails
+export interface BoxMeshDetails
 {
     boxNum:number
     position:any

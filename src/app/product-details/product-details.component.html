@@ -1,24 +1,24 @@
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text">ProductID</span>
-      <input type="text" class="form-control" id="ProductID" >
+      <input type="text" class="form-control" id="ProductID" [value]="productDataList[0].id" >
     </div>
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Temperature</span>
-      <input type="text" class="form-control"  id="Temperature" >
+      <input type="text" class="form-control"  id="Temperature " [value]="productDataList[0].temperature" >
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Weight</span>
-      <input type="text" class="form-control"  id="Weight" >
+      <input type="text" class="form-control"  id="Weight " [value]="productDataList[0].weight"  >
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Quantity</span>
-      <input type="text" class="form-control"  id="quantity" >
+      <input type="text" class="form-control"  id="quantity" [value]="productDataList[0].quantity" >
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Dimensions</span>
-      <input type="text" class="form-control"  id="Dimentions" >
+      <input type="text" class="form-control"  id="Dimensions" [value]="productDataList[0].dimensions" >
     </div>

@@ -6,10 +6,10 @@ import { ProductDetailsComponent } from './product-details.component';
 
 @NgModule({
   declarations: [
-    ProductDetailsComponent
+    ProductDetailsComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports:[
     ProductDetailsComponent
