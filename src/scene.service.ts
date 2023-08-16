@@ -20,15 +20,15 @@ export class SceneService {
     return this.scene;
   }
 
-  // createRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
-  //   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  //   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  //   renderer.shadowMap.enabled = true;
-  //   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  //   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  createRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-  //   return renderer;
-  // }
+    return renderer;
+  }
 
   createCamera(canvas: HTMLCanvasElement): THREE.PerspectiveCamera {
     const aspectRatio = canvas.clientWidth / canvas.clientHeight;

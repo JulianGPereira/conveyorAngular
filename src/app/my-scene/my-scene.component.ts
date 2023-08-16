@@ -151,8 +151,8 @@ export class MySceneComponent implements OnInit,AfterViewInit {
     
 
 
-   this.renderer=this.sceneService.getRenderer();
-    this.renderer.setSize(this.canvasRef.clientWidth, canvas.clientHeight);
+   this.renderer=this.sceneService.createRenderer(this.canvasRef.nativeElement);
+  //  this.renderer.setSize(this.sceneService.getCanvasWidth(this.canvasRef.nativeElement), this.sceneService.getCanvasHeight(this.canvasRef.nativeElement))
     let component: MySceneComponent = this;
 
     (function render() {
