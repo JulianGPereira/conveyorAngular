@@ -2,7 +2,7 @@
   "products": [
 
 {
-  "id": "box1",
+  "productid": "box1",
   "temperature": 20,
   "weight": 24,
   "quantity": 35,
@@ -10,14 +10,14 @@
 },
 
 {
-  "id": "box2",
-  "temperature": 43,
+  "productid": "box2",
+  "temperature": 44,
   "weight": 55,
   "quantity": 41,
   "dimensions": 22
 } ,
 {
-  "id": "box3",
+  "productid": "box3",
   "temperature": 20,
   "weight": 30,
   "quantity": 41,
@@ -25,21 +25,21 @@
 },
 
 {
-  "id": "box 4",
+  "productid": "box 4",
   "temperature": 43,
   "weight": 50,
   "quantity": 41,
   "dimensions": 30
 },
 {
-  "id": "box 5",
+  "productid": "box 5",
   "temperature": 10,
   "weight": 20,
   "quantity": 30,
   "dimensions": 30
 },
 {
-  "id": "box 6",
+  "productid": "box 6",
   "temperature": 45,
   "weight": 55,
   "quantity": 42,

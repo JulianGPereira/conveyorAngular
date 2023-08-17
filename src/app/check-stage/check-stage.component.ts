@@ -18,29 +18,28 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
   constructor(private sceneService: SceneService, private boxmeshService: BoxMeshService) {
    }
 
-  moveStraight(xPos:number) {
+   moveStraight(xPos: number) {
     const canvasRef: ElementRef | undefined = this.sceneService.getCanvasRef();
     if (canvasRef) {
       this.boxMesh = this.boxmeshService.boxMesh;
       this.scene = this.sceneService.getScene();
-
+  
       // get Created renderer and camera
-      this.renderer = this.sceneService.getRenderer()
+      this.renderer = this.sceneService.getRenderer();
       this.camera = this.sceneService.getCamera();
-
+  
       this.animateStraight(xPos);
-   
+    }
   }
-}
-
-  private animateStraight(xPos:number) {
+  
+  private animateStraight(xPos: number) {
     if (this.boxMesh.position.x < xPos) {
       this.boxMesh.position.x += 0.03;
       this.renderer.render(this.scene, this.camera);
+      requestAnimationFrame(() => this.animateStraight(xPos));
     }
-
-    requestAnimationFrame(() => this.animateStraight(xPos));
   }
+  
 
   ngOnInit(): void {
   }

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NewProductComponent } from './new-product.component';
 import { SceneService } from 'src/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
-
-
+import { ProductIncrementService } from '../product-increment.service';
+import { CombinedMeshService } from '../combined-mesh-service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,10 @@ import { BoxMeshService } from '../boxMesh.service';
   ],
   providers:[
     SceneService
-  ,BoxMeshService
+  ,BoxMeshService,
+  ProductIncrementService,
+CombinedMeshService
+
 ]
 })
 export class NewProductModule { }

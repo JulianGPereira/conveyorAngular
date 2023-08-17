@@ -1,24 +1,24 @@
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text">ProductID</span>
-      <input type="text" class="form-control" id="ProductID" [value]="productDataList[0].id" >
+      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.productid">
     </div>
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Temperature</span>
-      <input type="text" class="form-control"  id="Temperature " [value]="productDataList[0].temperature" >
+      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.temperature">
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Weight</span>
-      <input type="text" class="form-control"  id="Weight " [value]="productDataList[0].weight"  >
+      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.weight">
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Quantity</span>
-      <input type="text" class="form-control"  id="quantity" [value]="productDataList[0].quantity" >
+      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.quantity">
     </div>
 
     <div class="input-group flex-nowrap">
       <span class="input-group-text" >Dimensions</span>
-      <input type="text" class="form-control"  id="Dimensions" [value]="productDataList[0].dimensions" >
+      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.dimensions">
     </div>

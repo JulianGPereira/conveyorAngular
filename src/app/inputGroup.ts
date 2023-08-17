@@ -1,10 +1,10 @@
-export interface ProductVariableList
+export interface ProductVariableList extends Record<string,any>
 {
-    id:string
-    temperature:number
-    weight:number
-    quantity:number
-    dimensions:number
+    productid?:string
+    temperature?:number
+    weight?:number
+    quantity?:number
+    dimensions?:number
 }
 
 export interface StageValue
