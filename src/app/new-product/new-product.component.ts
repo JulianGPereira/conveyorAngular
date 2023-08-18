@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SceneService } from 'src/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { CombinedMeshService } from '../combined-mesh-service';
-import { ProductIncrementService } from '../product-increment.service';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 @Component({
   selector: '[app-new-product]',
   templateUrl: './new-product.component.html',
@@ -10,10 +10,11 @@ import { ProductIncrementService } from '../product-increment.service';
 })
 export class NewProductComponent implements OnInit {
  scene=this.sceneService.getScene()
+
   constructor(private sceneService: SceneService,
     private boxmeshService:BoxMeshService,
-     private productIncrement:ProductIncrementService,
-     private combinedMeshService: CombinedMeshService
+     private combinedMeshService: CombinedMeshService,
+     private productdetailsComponent:ProductDetailsComponent
      ) { }
 
   boxMesh!:THREE.Mesh
@@ -25,7 +26,7 @@ export class NewProductComponent implements OnInit {
     this.boxMesh.position.set(-7.5,3.6,-1.45)
     this.scene.add(this.boxMesh)
     console.log("new product box details "+this.boxMesh.id)
-    this.productIncrement.incrementValue()
+    this.productdetailsComponent.incrementValue()
 
   }
 

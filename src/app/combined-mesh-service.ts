@@ -7,6 +7,7 @@ import { ProductVariableList } from './inputGroup'; // Adjust the import path as
 export class CombinedMeshService {
   private combinedMeshProperties: ProductVariableList | undefined;
 
+
   constructor() {}
 
   updateProperties(boxMesh: THREE.Mesh, selectedProduct: ProductVariableList) {

@@ -8,8 +8,14 @@ export class ProductIncrementService {
   private functionCallSource = new Subject<void>();
   functionCall$ = this.functionCallSource.asObservable();
 
-  incrementValue() {
+  addProductProperties() {
     this.functionCallSource.next();
+  }
+
+  findResultofStage()
+  {
+    this.functionCallSource.next();
+
   }
 
   constructor() { }

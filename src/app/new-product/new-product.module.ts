@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NewProductComponent } from './new-product.component';
 import { SceneService } from 'src/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
-import { ProductIncrementService } from '../product-increment.service';
 import { CombinedMeshService } from '../combined-mesh-service';
-
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 @NgModule({
   declarations: [
     NewProductComponent
@@ -19,8 +18,8 @@ import { CombinedMeshService } from '../combined-mesh-service';
   providers:[
     SceneService
   ,BoxMeshService,
-  ProductIncrementService,
-CombinedMeshService
+CombinedMeshService,
+ProductDetailsComponent
 
 ]
 })
