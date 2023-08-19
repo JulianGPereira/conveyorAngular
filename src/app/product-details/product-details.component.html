@@ -1,24 +1,27 @@
 
-    <div class="input-group flex-nowrap">
-      <span class="input-group-text">ProductID</span>
-      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.productid">
-    </div>
-    <div class="input-group flex-nowrap">
-      <span class="input-group-text" >Temperature</span>
-      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.temperature">
-    </div>
+<div *ngIf="selectedProduct">
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text">ProductID</span>
+    <input type="text" class="form-control" [value]="selectedProduct.productid">
+  </div>
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text">Temperature</span>
+    <input type="text" class="form-control"
+      [value]="selectedProduct.temperature">
+  </div>
 
-    <div class="input-group flex-nowrap">
-      <span class="input-group-text" >Weight</span>
-      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.weight">
-    </div>
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text">Weight</span>
+    <input type="text" class="form-control" [value]="selectedProduct.weight">
+  </div>
 
-    <div class="input-group flex-nowrap">
-      <span class="input-group-text" >Quantity</span>
-      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.quantity">
-    </div>
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text">Quantity</span>
+    <input type="text" class="form-control" [value]="selectedProduct.quantity">
+  </div>
 
-    <div class="input-group flex-nowrap">
-      <span class="input-group-text" >Dimensions</span>
-      <input *ngIf="selectedProduct" type="text" class="form-control" id="ProductID" [value]="selectedProduct.dimensions">
-    </div>
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text">Dimensions</span>
+    <input type="text" class="form-control" [value]="selectedProduct.dimensions">
+  </div>
+  <div>

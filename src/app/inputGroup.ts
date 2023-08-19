@@ -9,10 +9,10 @@ export interface ProductVariableList extends Record<string,any>
 
 export interface StageValue
 {
-    stage1Value:number
-    stage2Value:number
-    stage3Value:number
-    stage4Value:number
+    stage1Value?:number
+    stage2Value?:number
+    stage3Value?:number
+    stage4Value?:number
 }
 
 export interface StageResults

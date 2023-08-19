@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BoxMeshService } from '../boxMesh.service';
 import { CombinedMeshService } from '../combined-mesh-service';
 import { InputFetchService } from '../input-fetch.service';
 import { ProductVariableList } from '../inputGroup';
-import { ProductIncrementService } from '../product-increment.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent {
-  value: number = -1;
+export class ProductDetailsComponent implements OnInit{
+  // value = -2;
   productDataList: ProductVariableList[] = [];
   selectedProduct: ProductVariableList | undefined;
   combinedBoxMesh: ProductVariableList = {
@@ -20,32 +19,36 @@ export class ProductDetailsComponent {
 
   constructor(
     private inputFetchService: InputFetchService,
-    private productIncrement: ProductIncrementService,
     private boxmeshService: BoxMeshService,
-    private combinedMeshService: CombinedMeshService
+    private combinedMeshService: CombinedMeshService,
   ) {
     this.inputFetchService.getInputDetails().then((productDataList: ProductVariableList[]) => {
       this.productDataList = productDataList;
-    });
-
-    this.productIncrement.functionCall$.subscribe(() => {
-      this.incrementValue();
+      console.log(this.productDataList)
     });
   }
 
-  incrementValue() {
-    this.value++; // Increment the value
+  ngOnInit(): void {
+    this.combinedMeshService.incrementedProduct$.subscribe((value) => {
+      this.incrementValue(value);
+      console.log(value)
+    });
+  }
 
-    if (this.value < this.productDataList.length) {
-      this.selectedProduct = this.productDataList[this.value];
+  incrementValue(value:number) {
+    // Increment the value
+
+    if (value < this.productDataList.length) {
+      this.selectedProduct = this.productDataList[value];
+      console.log(this.selectedProduct);
       this.boxMesh = this.boxmeshService.getBox();
 
       if (this.selectedProduct && this.boxMesh) {
         this.combinedMeshService.updateProperties(this.boxMesh, this.selectedProduct);
         this.combinedBoxMesh = this.combinedMeshService.getProperties() || {};
         console.log(this.combinedBoxMesh);
-        console.log(this.combinedBoxMesh.dimensions);
       }
+     
     }
   }
 }

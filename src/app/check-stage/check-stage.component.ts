@@ -1,25 +1,30 @@
-import { Component, OnInit, ElementRef,AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef,AfterViewInit,ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { SceneService } from 'src/scene.service';
+import { SceneService } from 'src/app/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { StageValue } from '../inputGroup';
-import { ResultsBarComponent } from '../results-bar/results-bar.component';
+import { CombinedMeshService } from '../combined-mesh-service';
+import { InputFetchService } from '../input-fetch.service';
 @Component({
   selector: 'app-check-stage',
   templateUrl: './check-stage.component.html',
   styleUrls: ['./check-stage.component.css']
 })
 export class CheckStageComponent implements OnInit,AfterViewInit  {
- 
+ @ViewChild('stage1value') private stage1Ref :ElementRef<HTMLInputElement>| undefined
+ @ViewChild('stage2value') private stage2Ref :ElementRef<HTMLInputElement>| undefined
+ @ViewChild('stage3value') private stage3Ref :ElementRef<HTMLInputElement>| undefined
+ @ViewChild('stage4value') private stage4Ref :ElementRef<HTMLInputElement>| undefined
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private boxMesh!: THREE.Mesh;
-  private stagevalue!:StageValue
+  private stagevalue?:StageValue|undefined
 
   constructor(private sceneService: SceneService, 
     private boxmeshService: BoxMeshService,
-    private resultsBarComponent: ResultsBarComponent,
+    private combinedMeshService:CombinedMeshService,
+    private inputFetchService:InputFetchService
     ) {
    }
 
@@ -32,9 +37,6 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
       // get Created renderer and camera
       this.renderer = this.sceneService.getRenderer();
       this.camera = this.sceneService.getCamera();
-
-      
-  
       this.animateStraight(xPos);
     }
   }
@@ -48,14 +50,21 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
     else
     {
 
-      this.resultsBarComponent.findResultofStage()
+      this.combinedMeshService.getProductResults(true)
     }
     }
   
   
-
   ngOnInit(): void {
-  }
+    this.stagevalue.stage1Value=Number(this.stage1Ref?.nativeElement.value)
+    this.stagevalue.stage2Value=Number(this.stage2Ref?.nativeElement.value)
+    this.stagevalue.stage3Value=Number(this.stage3Ref?.nativeElement.value)
+    this.stagevalue.stage4Value=Number(this.stage4Ref?.nativeElement.value)
+    console.log(this.stagevalue)
+
+    }
+    
+  
 
   ngAfterViewInit() {
     
