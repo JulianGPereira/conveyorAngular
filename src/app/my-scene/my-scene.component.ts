@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import { SceneService } from 'src/app/scene.service';
+import { SceneService } from 'src/app/my-scene/scene.service';
 
 
 @Component({
@@ -86,7 +86,6 @@ export class MySceneComponent implements OnInit,AfterViewInit {
       this.model = glb.scene
       this.model.position.set(-6,3,-2)
       this.model.scale.set(.285,.285,.285)
-      console.log(this.model);
       glb.scene.traverse(function(child){
         if((<THREE.Mesh> child).isMesh)
         {

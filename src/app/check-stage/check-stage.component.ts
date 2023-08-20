@@ -1,28 +1,31 @@
-import { Component, OnInit, ElementRef,AfterViewInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ElementRef,AfterViewInit, OnDestroy  } from '@angular/core';
 import * as THREE from 'three';
-import { SceneService } from 'src/app/scene.service';
+import { SceneService } from 'src/app/my-scene/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { StageValue } from '../inputGroup';
 import { CombinedMeshService } from '../combined-mesh-service';
 import { InputFetchService } from '../input-fetch.service';
+import {  Subscription } from 'rxjs';
 @Component({
   selector: 'app-check-stage',
   templateUrl: './check-stage.component.html',
   styleUrls: ['./check-stage.component.css']
 })
-export class CheckStageComponent implements OnInit,AfterViewInit  {
+export class CheckStageComponent implements OnInit,AfterViewInit   {
  
+  private subscription!: Subscription;
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private boxMesh!: THREE.Mesh;
   private stagevalue?:StageValue
 
-  stage1Ref?:number=21
-  stage2Ref?:number=22
+  stage1Ref?:number=23
+  stage2Ref?:number=30
     stage3Ref?:number=24
-    stage4Ref?:number=44
-  constructor(private sceneService: SceneService, 
+    stage4Ref?:number=45
+  constructor(
+    private sceneService: SceneService, 
     private boxmeshService: BoxMeshService,
     private combinedMeshService:CombinedMeshService,
     private inputFetchService:InputFetchService
@@ -51,6 +54,7 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
     else
     {
 
+      this.boxMesh.position.set(xPos,this.boxMesh.position.y,this.boxMesh.position.z)
       this.combinedMeshService.getProductResults(true)
     }
     }
@@ -58,6 +62,7 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
   
     ngOnInit(): void {
       this.updateStageValue();
+     
     }
 
 
@@ -77,9 +82,9 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
     
     // Update the service with the new stagevalue
     this.inputFetchService.setStageValue(this.stagevalue);
-
-    console.log(this.stagevalue);
   }
+
+ 
 
 
 }

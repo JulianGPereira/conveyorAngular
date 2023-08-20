@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductVariableList } from './inputGroup'; // Adjust the import path as needed
+import { ProductVariableList } from './inputGroup';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,9 +10,14 @@ export class CombinedMeshService {
   private product$ = new BehaviorSubject<any>({});
   private results$=new BehaviorSubject<any>({});
   private move$=new BehaviorSubject<any>({});
+  private pass$=new BehaviorSubject<any>({});
+
   incrementedProduct$ = this.product$.asObservable();
   getProductResult$=this.results$.asObservable()
-  setBoxMoveStraight$=this.move$.asObservable()
+  setBoxMoveStraight$=this.move$.asObservable();
+  moveBoxtoPass$=this.pass$.asObservable();
+
+
 
   constructor() {}
 
@@ -40,5 +45,11 @@ export class CombinedMeshService {
   setBoxMoveStraight(xPos:number)
   {
     this.move$.next(xPos)
+  }
+
+  moveBoxtoPass(xPos:number)
+  {
+    // console.log("i am called")
+    this.pass$.next(xPos)
   }
 }

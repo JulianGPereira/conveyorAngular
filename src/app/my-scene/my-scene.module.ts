@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MySceneComponent } from './my-scene.component';
-import { SceneService } from 'src/app/scene.service';
+import { SceneService } from 'src/app/my-scene/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 
 

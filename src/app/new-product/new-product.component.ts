@@ -1,5 +1,5 @@
 import {  Component, OnInit } from '@angular/core';
-import { SceneService } from 'src/app/scene.service';
+import { SceneService } from 'src/app/my-scene/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { CombinedMeshService } from '../combined-mesh-service';
 
@@ -20,11 +20,9 @@ export class NewProductComponent implements OnInit {
   boxMesh!:THREE.Mesh
   newProduct()
   {
-    console.log(this.combinedMeshService.getProperties())
     this. boxMesh=this.boxmeshService.createBox()
     this.boxMesh.position.set(-7.5,3.6,-1.45)
     this.scene.add(this.boxMesh)
-    console.log("new product box details "+this.boxMesh.id)
     this.combinedMeshService.setProductIncrement(this.value+=1);
    
   }

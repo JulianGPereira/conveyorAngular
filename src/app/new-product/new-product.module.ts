@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewProductComponent } from './new-product.component';
-import { SceneService } from 'src/app/scene.service';
+import { SceneService } from 'src/app/my-scene/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { CombinedMeshService } from '../combined-mesh-service';
 import { ProductDetailsComponent } from '../product-details/product-details.component';

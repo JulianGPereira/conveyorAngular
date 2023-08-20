@@ -24,14 +24,12 @@ export class ProductDetailsComponent implements OnInit{
   ) {
     this.inputFetchService.getInputDetails().then((productDataList: ProductVariableList[]) => {
       this.productDataList = productDataList;
-      console.log(this.productDataList)
     });
   }
 
   ngOnInit(): void {
     this.combinedMeshService.incrementedProduct$.subscribe((value) => {
       this.incrementValue(value);
-      console.log(value)
     });
   }
 
@@ -40,13 +38,11 @@ export class ProductDetailsComponent implements OnInit{
 
     if (value < this.productDataList.length) {
       this.selectedProduct = this.productDataList[value];
-      console.log(this.selectedProduct);
       this.boxMesh = this.boxmeshService.getBox();
 
       if (this.selectedProduct && this.boxMesh) {
         this.combinedMeshService.updateProperties(this.boxMesh, this.selectedProduct);
         this.combinedBoxMesh = this.combinedMeshService.getProperties() || {};
-        console.log(this.combinedBoxMesh);
       }
      
     }
