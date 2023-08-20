@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ProductVariableList } from './inputGroup';
+import { StageValue } from './inputGroup';
 @Injectable({
   providedIn: 'root'
 })
 export class InputFetchService {
+
+  private stageValueRef?:StageValue
 
   constructor() { }
 
@@ -13,5 +16,26 @@ export class InputFetchService {
     const data = await fetch(this.url);
     return await data.json() ?? [];
   }
+
+  setStageValue(stageValues:StageValue)
+  {
+
+     this.stageValueRef=stageValues
+
+  }
+
+  getStageValue()
+  {
+    return this.stageValueRef
+  }
+
+  
+
+ 
+  
+
+
+
+
 
 }

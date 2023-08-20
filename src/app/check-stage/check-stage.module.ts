@@ -5,14 +5,15 @@ import { SceneService } from 'src/app/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
 import { MySceneModule } from '../my-scene/my-scene.module';
 import { ResultsBarComponent } from '../results-bar/results-bar.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     CheckStageComponent
   ],
   imports: [
     CommonModule,
-    MySceneModule
+    MySceneModule,
+    FormsModule
   ],
   exports:[
     CheckStageComponent

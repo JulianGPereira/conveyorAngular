@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef,AfterViewInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef,AfterViewInit, SimpleChanges } from '@angular/core';
 import * as THREE from 'three';
 import { SceneService } from 'src/app/scene.service';
 import { BoxMeshService } from '../boxMesh.service';
@@ -11,24 +11,25 @@ import { InputFetchService } from '../input-fetch.service';
   styleUrls: ['./check-stage.component.css']
 })
 export class CheckStageComponent implements OnInit,AfterViewInit  {
- @ViewChild('stage1value') private stage1Ref :ElementRef<HTMLInputElement>| undefined
- @ViewChild('stage2value') private stage2Ref :ElementRef<HTMLInputElement>| undefined
- @ViewChild('stage3value') private stage3Ref :ElementRef<HTMLInputElement>| undefined
- @ViewChild('stage4value') private stage4Ref :ElementRef<HTMLInputElement>| undefined
+ 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private boxMesh!: THREE.Mesh;
-  private stagevalue?:StageValue|undefined
+  private stagevalue?:StageValue
 
+  stage1Ref?:number=21
+  stage2Ref?:number=22
+    stage3Ref?:number=24
+    stage4Ref?:number=44
   constructor(private sceneService: SceneService, 
     private boxmeshService: BoxMeshService,
     private combinedMeshService:CombinedMeshService,
     private inputFetchService:InputFetchService
-    ) {
-   }
+    ) {}
 
    moveStraight(xPos: number) {
+   
     const canvasRef: ElementRef | undefined = this.sceneService.getCanvasRef();
     if (canvasRef) {
       this.boxMesh = this.boxmeshService.boxMesh;
@@ -55,19 +56,30 @@ export class CheckStageComponent implements OnInit,AfterViewInit  {
     }
   
   
-  ngOnInit(): void {
-    this.stagevalue.stage1Value=Number(this.stage1Ref?.nativeElement.value)
-    this.stagevalue.stage2Value=Number(this.stage2Ref?.nativeElement.value)
-    this.stagevalue.stage3Value=Number(this.stage3Ref?.nativeElement.value)
-    this.stagevalue.stage4Value=Number(this.stage4Ref?.nativeElement.value)
-    console.log(this.stagevalue)
-
+    ngOnInit(): void {
+      this.updateStageValue();
     }
-    
-  
+
+
 
   ngAfterViewInit() {
     
   }
+
+   updateStageValue(): void {
+    
+    this.stagevalue = {
+      stage1Value: this.stage1Ref,
+      stage2Value: this.stage2Ref,
+      stage3Value: this.stage3Ref,
+      stage4Value: this.stage4Ref
+    };
+    
+    // Update the service with the new stagevalue
+    this.inputFetchService.setStageValue(this.stagevalue);
+
+    console.log(this.stagevalue);
+  }
+
 
 }
