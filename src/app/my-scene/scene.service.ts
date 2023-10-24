@@ -1,5 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 import * as THREE from 'three';
+import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 
 @Injectable()
 export class SceneService {
@@ -20,24 +21,18 @@ export class SceneService {
     return this.scene;
   }
 
-  createRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
-    this. renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-    return this.renderer;
+  setRenderer(render:THREE.WebGLRenderer) {
+   this.renderer=render
   }
 
   createCamera(canvas: HTMLCanvasElement): THREE.PerspectiveCamera {
-    const aspectRatio = canvas.clientWidth / canvas.clientHeight;
-    this.camera= new THREE.PerspectiveCamera(75, aspectRatio, 1, 1000);
-    return this.camera
+    const aspectRatio = canvas.width / canvas.height;
+    this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 1000);
+    return this.camera;
   }
 
-  getCamera():THREE.PerspectiveCamera{
-    return this.camera
+  getCamera(): THREE.PerspectiveCamera {
+    return this.camera;
   }
 
   getCanvasWidth(canvas: HTMLCanvasElement): number {
@@ -48,14 +43,17 @@ export class SceneService {
     return canvas.clientHeight;
   }
 
-  constructor()
-  {
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    
-  }
+  constructor() {}
   getRenderer(): THREE.WebGLRenderer {
     return this.renderer;
+  }
+
+  createLabelRenderer(canvas: HTMLCanvasElement) {
+    const labelRenderer = new CSS2DRenderer();
+    labelRenderer.setSize(canvas.width, canvas.height);
+    labelRenderer.domElement.style.position = 'absolute';
+    labelRenderer.domElement.style.top = '0px';
+    document.body.appendChild(labelRenderer.domElement);
+    return labelRenderer;
   }
 }

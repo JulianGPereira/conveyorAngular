@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewProductComponent } from './new-product.component';
 import { SceneService } from 'src/app/my-scene/scene.service';
-import { BoxMeshService } from '../boxMesh.service';
-import { CombinedMeshService } from '../combined-mesh-service';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { BoxMeshService } from '../my-scene/boxMesh.service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     NewProductComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatSlideToggleModule,
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule
   ],
   exports:[
     NewProductComponent
@@ -18,9 +23,6 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
   providers:[
     SceneService
   ,BoxMeshService,
-CombinedMeshService,
-ProductDetailsComponent
-
 ]
 })
 export class NewProductModule { }

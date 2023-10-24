@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { ProductDetailsModule } from './product-details/product-details.module';
+import {MatTabsModule} from '@angular/material/tabs';
 import { NewProductModule } from './new-product/new-product.module';
-import { CheckStageModule } from './check-stage/check-stage.module';
-import { ResultsBarModule } from './results-bar/results-bar.module';
 import { MySceneModule } from './my-scene/my-scene.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,11 +14,11 @@ import { MySceneModule } from './my-scene/my-scene.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductDetailsModule,
     NewProductModule,
-    CheckStageModule,
-    ResultsBarModule,
-    MySceneModule
+    MySceneModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+      
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,43 @@
 
-    <button type="button" class="btn btn-primary" id="submitFields" style="margin: 10px;" (click)="newProduct()">
-        <h3>New Product</h3>
+    <button type="button" class="btn btn-primary" id="submitFields" style="margin: 10px;" (click)="stopProductGeneration()">
+        <h5>Stop Animation</h5>
     </button>
 
+    <div *ngIf="monotainerList">
+        <div class="dropdown" >
+          <button class="btn btn-secondary "style="margin: 10px;" type="button" *ngFor="let item of monotainerList " (click)="moveForkLift(item.id)" >
+            Tag {{item.id}}
+          </button>
+         
+        </div>
+      </div>
+
+      <div>
+        <button type="button" class="btn btn-primary" id="submitFields" style="margin: 10px;" (click)="goToLane1()">
+          <h6>Lane1 </h6>
+      </button>
+
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary" id="submitFields" style="margin: 10px;" (click)="goToLane2()">
+          <h6>Lane2 </h6>
+      </button>
+
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary" id="submitFields" style="margin: 10px;" (click)="goToLane3()">
+          <h6>Lane3 </h6>
+      </button>
+
+      </div>
+
+      <div *ngIf="monotainerInLane">
+        <div class="dropdown" >
+          <button class="btn btn-secondary "style="margin: 10px;" type="button" *ngFor="let item of monotainerInLane " (click)="forkLiftExit(item.id)" >
+            Untag {{item.id}}
+          </button>
+         
+        </div>
+      </div>
+
+      

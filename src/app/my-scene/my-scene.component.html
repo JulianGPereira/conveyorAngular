@@ -1,2 +1,12 @@
+<ng-container *ngIf="loading$ | async">
+  <div class="loading-container">
+    <div class="overlay">
+      <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*GWW-gazZP8WYLBab.jpg" alt="" style="z-index: 4;">
+    </div>
+  </div>
+</ng-container>
 
-<canvas #canvas id="canvas" width="850px" height="650px" style="border:1px solid black ;"></canvas>
+  <div id="container" style="max-width: 100%; overflow: hidden;">
+    <canvas #canvas id="canvas" style="border: 1px solid black; width: 100%; height: auto; display: inline-block;"></canvas>
+  </div>
+    
